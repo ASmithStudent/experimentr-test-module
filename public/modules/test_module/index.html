@@ -1,0 +1,42 @@
+
+<div id="test_module">
+    <div class="container">
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="first_name" type="text" class="validate" name="firstname">
+                <label for="first_name">First Name</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="last_name" type="text" class="validate" name="lastname">
+                <label for="last_name">Last Name</label>
+            </div>
+        </div>
+    </div>
+</div>
+        
+<script> 
+    (function() {
+        var data = {};
+
+
+        d3.selectAll('input')
+        .filter(function(d) { 
+            return this.name === 'firstname' ? this : null; 
+        })
+        .on('change', function() { data.firstname = this.value; validate();});
+        
+        d3.selectAll('input')
+        .filter(function(d) { return this.name === 'lastname' ? this : null; })
+        .on('change', function() { data.lastname = this.value; validate();});
+        
+        function validate() {
+            if(data.firstname && data.lastname) {
+            experimentr.addData(data);
+            console.log("Firstname: ", data.firstname)
+            console.log("Lastname: ", data.firstname)
+            experimentr.release();
+            }
+        }
+    }());
+</script>
+        
